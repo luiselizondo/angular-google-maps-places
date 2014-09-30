@@ -1,0 +1,6 @@
+web:
+  image: luis/nginx
+  volumes:
+    - ./:/var/www
+  ports:
+    - "8001:80"

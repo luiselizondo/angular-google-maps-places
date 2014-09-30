@@ -12,7 +12,7 @@
       	lng: typeof options.lng !== "undefined" ? parseFloat(options.lng) : 131.044922
       },
       zoom: typeof options.zoom !== "undefined" ? Number(options.zoom) : 8
-		}
+		};
 
 		this.mapOptions = defaultOptions;
 	}
@@ -21,7 +21,7 @@
 	Map.prototype.simpleMap = function() {
 		var self = this;
 		return new google.maps.Map(document.getElementById('map-canvas'), self.mapOptions);
-	}
+	};
 
 	// Displays a map with a marker
 	Map.prototype.markerMap = function(attrs) {
@@ -39,7 +39,7 @@
     	var marker = new google.maps.Marker({
 			    position: markerPosition,
 			    map: map,
-			    draggable: attrs.markerdraggable == "true" ? true : false,
+			    draggable: attrs.markerdraggable === "true" ? true : false,
 			    title: attrs.markertitle !== "undefined" ? attrs.markertitle : null,
 			});
 
@@ -47,7 +47,7 @@
   	}
 
 		return map;
-	}
+	};
 
 	Map.prototype.placesMap = function(scope, attrs) {
 		var self = this;
@@ -67,7 +67,7 @@
 	  var marker = new google.maps.Marker({
 	    map: map,
 	    anchorPoint: new google.maps.Point(0, -29),
-	    draggable: attrs.markerdraggable == "true" ? true : false,
+	    draggable: attrs.markerdraggable === "true" ? true : false,
 	  });
 
 	  google.maps.event.addListener(marker, 'dragend', function() {
@@ -133,10 +133,8 @@
 	    infowindow.open(map, marker);
 	  });
 
-
-
 	  return map;
-	}
+	};
 
 	// Directive function for map
 	function simpleMap() {
@@ -144,13 +142,12 @@
 			restrict: 'EA',
 			replace: true,
 			transclude: true,
-			template: '<div id="map-canvas" style="height: {{ height }}"></div>',
+			template: '<div id="map-canvas"></div>',
 			link: function(scope, element, attrs) {
-				scope.height = typeof attrs.height !== "undefined" ? attrs.height : "250px";
 				var map = new Map(attrs);
 				map.simpleMap();
  			}
-		}
+		};
 	}
 
 	// Directive function for markermap
@@ -159,13 +156,12 @@
 			restrict: 'EA',
 			replace: true,
 			transclude: true,
-			template: '<div id="map-canvas" style="height: {{ height }}"></div>',
+			template: '<div id="map-canvas"></div>',
 			link: function(scope, element, attrs) {
-				scope.height = typeof attrs.height !== "undefined" ? attrs.height : "250px";
-				var map = new Map(attrs)
+				var map = new Map(attrs);
 				map.markerMap(attrs);
 			}
-		}
+		};
 	}
 
 	// directive function for geocodermap
@@ -174,16 +170,13 @@
 			restrict: 'EA',
 			replace: true,
 			transclude: true,
-			template: '<div><input id="pac-input" class="controls" type="text" placeholder="{{placeholder}}" /><div id="map-canvas" style="height: {{ height }}"></div></div>',
+			template: '<div><input id="pac-input" class="controls" type="text" placeholder="{{placeholder}}" /><div id="map-canvas"></div></div>',
 			link: function(scope, element, attrs) {
-				scope.height = typeof attrs.height !== "undefined" ? attrs.height : "250px";
 				scope.placeholder = typeof attrs.placeholder !== "undefined" ? attrs.placeholder : "Enter a location";
-				var map = new Map(attrs)
+				var map = new Map(attrs);
 				map.placesMap(scope, attrs);
-
-				
 			}
-		}
+		};
 	}
 
 	// create angular module with the directives

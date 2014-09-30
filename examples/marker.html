@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Test">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Test</title>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../src/angular-google-maps-places.css">
+
+        <style type="text/css">
+            #map-canvas {
+                height: 700px;
+            }
+        </style>
+    </head>
+    <body ng-app="app">
+        <div class="page">
+            <div class="container">
+                <h1 class="pull-left"><strong>markermap</strong> directive example</h1>
+                <div class="pull-right" style="margin-top: 20px;">
+                <a href="/examples/index.html" class="btn btn-default">Back</a>
+                </div>
+            </div>
+            <markermap 
+                style = 'height: 700px;'
+                ltn = "25.716931052012836" 
+                lng = "-100.2007561546875" 
+                markerltn = "25.716931052012836"
+                markerlng = "-100.2007561546875"
+                markerdraggable = "true"
+                markertitle = "Move me!"
+                zoom = "14">
+            </markermap>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>
+        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=true"></script>
+        <script src="../dist/angular-google-maps-places.min.js" /></script>
+        <script src="app.js"></script>
+    </body>
+</html>

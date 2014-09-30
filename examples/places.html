@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Test">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Test</title>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../src/angular-google-maps-places.css">
+
+        <style type="text/css">
+            #map-canvas {
+                height: 700px;
+            }
+        </style>
+    </head>
+    <body ng-app="app">
+        <div class="page" ng-controller="PlacesController">
+            <div class="container">
+                <h1 class="pull-left"><strong>placesmap</strong> directive example</h1>
+                <div class="pull-right" style="margin-top: 20px;">
+                    <button id="latitude" class="btn btn-default">Latitude: {{ location.ltn }}</button>
+                    <button id="longitude" class="btn btn-default">Longitude: {{ location.lng }}</button>
+                    <a href="/examples/index.html" class="btn btn-default">Back</a>
+                </div>
+            </div>
+            <placesmap 
+                id = "map"
+                ltn = "40.7127837" 
+                lng = "-74.00594130000002" 
+                markerdraggable = "true"
+                markertitle = "Move me!"
+                placeholder = "Enter a location"
+                zoom = "14">
+            </placesmap>
+
+            <br />
+            <div class="container">
+                <div class="form-group">
+                    <label for="ltn">Latitude</label>
+                    <input type="text" name="ltn" ng-model="location.ltn" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label for="lng">Longitude</label>
+                    <input type="text" name="lng" ng-model="location.lng" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+        <script src="../dist/angular-google-maps-places.min.js" /></script>
+        <script src="app.js"></script>
+    </body>
+</html>

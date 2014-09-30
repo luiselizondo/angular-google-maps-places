@@ -6,9 +6,7 @@
     "type": "git",
     "url": "http://github.com/luiselizondo/angular-google-maps-places"
   },
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
     "load-grunt-tasks": "0.6.0",
@@ -20,7 +18,8 @@
     "karma-jasmine": "~0.2.1",
     "karma-phantomjs-launcher": "~0.1.1",
     "coveralls": "~2.11.0",
-    "grunt-ngdocs": "^0.2.1"
+    "grunt-ngdocs": "^0.2.1",
+    "grunt-contrib-cssmin": "~0.10.0"
   },
   "engines": {
     "node": ">=0.10.0"
