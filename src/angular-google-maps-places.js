@@ -64,11 +64,24 @@
 		autocomplete.bindTo('bounds', map);
 
 		var infowindow = new google.maps.InfoWindow();
-	  var marker = new google.maps.Marker({
+
+		var markerOptions = {
 	    map: map,
 	    anchorPoint: new google.maps.Point(0, -29),
 	    draggable: attrs.markerdraggable === "true" ? true : false,
-	  });
+	  };
+
+	  // check for a default marker position
+  	var markerLatitude = attrs.markerltn !== "undefined" ? parseFloat(attrs.markerltn) : null;
+  	var markerLongitude = attrs.markerlng !== "undefined" ? parseFloat(attrs.markerlng) : null;
+  	
+  	// set the position of the marker using the attributes
+  	if(markerLatitude && markerLongitude) {
+  		markerOptions.position = new google.maps.LatLng(markerLatitude, markerLongitude);
+  	}
+
+  	// setthe marker
+	  var marker = new google.maps.Marker(markerOptions);
 
 	  google.maps.event.addListener(marker, 'dragend', function() {
 	    // map.setZoom(8);
