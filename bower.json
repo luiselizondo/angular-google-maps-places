@@ -1,0 +1,21 @@
+{
+	"name": "angular-google-maps-places",
+	"version": "0.0.1",
+	"description": "Google Maps directives with places search",
+	"author": "Luis Elizondo",
+	"license": "MIT",
+	"homepage": "http://github.com/luiselizondo/angular-google-maps-places",
+	"main": "./src/angular-google-maps-places.js",
+	"ignore": [
+	],
+	"dependencies": {
+		"angular": ">=1.0.0 <1.4.0",
+	},
+	"devDependencies": {
+	
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/luiselizondo/angular-google-maps-places.git"
+	}
+}
