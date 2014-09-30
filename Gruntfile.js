@@ -19,7 +19,7 @@ module.exports = function (grunt) {
 	        jQuery: true
 	      },
 	    },
-	    all: ['src/*.js']
+	    all: ['bower.json', 'src/*.js']
 	  },
 		uglify: {
 			dist: {
