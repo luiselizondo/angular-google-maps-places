@@ -14,6 +14,9 @@
 				$scope.location.ltn = position.ltn;
 				$scope.location.lng = position.lng;
 
+				console.log("This is the object position sent from the directive on the event placeChanged");
+				console.log(position);
+
 				angular.element(document.getElementById('latitude')).addClass("btn-success");
 				angular.element(document.getElementById('longitude')).addClass("btn-primary");
 			});
@@ -26,9 +29,21 @@
 				$scope.location.ltn = position.ltn;
 				$scope.location.lng = position.lng;
 
+				console.log("This is the object position sent from the directive on the event markerDragEnd");
+				console.log(position);
+
 				angular.element(document.getElementById('latitude')).addClass("btn-success");
 				angular.element(document.getElementById('longitude')).addClass("btn-primary");
 			});
+		});
+
+		$rootScope.$on("reverseGeocodingEnd:done", function(e, results) {
+			console.log("Attempted to reverse geocode and got results:");
+			console.log(results);
+		});
+
+		$rootScope.$on("reverseGeocodingEnd:error", function(e, error) {
+			console.log(error);
 		});
 	}]);
 

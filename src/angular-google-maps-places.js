@@ -49,6 +49,24 @@
 		return map;
 	};
 
+	Map.prototype.reverseGeocoding = function(scope, position) {
+		var geocoder = new google.maps.Geocoder();
+
+		geocoder.geocode({'latLng': position}, function(results, status) {
+			if(status === google.maps.GeocoderStatus.OK) {
+				if(results) {
+					return scope.$emit("reverseGeocodingEnd:done", results);
+				}
+				else {
+					return scope.$emit("reverseGeocodingEnd:error", "NO RESULTS");
+				}
+			}
+			else {
+				return scope.$emit("reverseGeocodingEnd:error", status);
+			}
+		});
+	};
+
 	Map.prototype.placesMap = function(scope, attrs) {
 		var self = this;
 		var map = new google.maps.Map(document.getElementById('map-canvas'), self.mapOptions);
@@ -89,9 +107,14 @@
 	    var position = marker.getPosition();
 	    map.setCenter(position);
 
+	    // try to reverse geocode the markerposition, 
+	    // when finished, it will trigger an independent event
+	    self.reverseGeocoding(scope, position);
+
 	    scope.$emit("markerDragEnd", {
 				ltn: position.lat(), 
-				lng: position.lng()
+				lng: position.lng(),
+				position: position
 			});
 	  });
 
@@ -109,12 +132,6 @@
 	    if (!place.geometry) {
 	      return;
 	    }
-
-	    // Emit the event
-	    scope.$emit("placeChanged", {
-	    	ltn: place.geometry.location.lat(),
-	    	lng: place.geometry.location.lng()
-	    });
 
 	    // If the place has a geometry, then present it on a map.
 	    if (place.geometry.viewport) {
@@ -141,6 +158,14 @@
 	        (place.address_components[2] && place.address_components[2].short_name || '')
 	      ].join(' ');
 	    }
+
+	    // Emit the event
+	    scope.$emit("placeChanged", {
+	    	ltn: place.geometry.location.lat(),
+	    	lng: place.geometry.location.lng(),
+	    	place: place,
+	    	position: place.geometry.location
+	    });
 
 	    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
 	    infowindow.open(map, marker);
